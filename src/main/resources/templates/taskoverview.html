@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Task listing</title>
+    <link th:href="@{/css/stylesheet.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<link th:include="navbar.html">
+<body>
+
+
+<main role="main" class="container">
+    <h4 th:text="#{overviewoftasks}"></h4>
+    <div class="starter-template">
+
+    <table>
+        <thead>
+        <tr>
+            <th style="font-size: 20px" th:text="#{title}"></th>
+            <th style="font-size: 20px" th:text="#{dt}"></th>
+        </tr>
+        </thead>
+    <tbody>
+
+        <tr th:each="task :${tasks}">
+            <td style="font-size: 20px"><a th:href="@{/tasks/{id}(id=${task.id})}" th:text="*{task.title}"></a></td>
+            <td style="font-size: 20px" th:text="*{#temporals.format(task.date, 'dd-MM-yyyy HH:mm')}"></td>
+        </tr>
+    </tbody>
+    </table>
+
+        <span th:if="${#lists.isEmpty(tasks)}">
+            <p style="font-size: 40px" th:text="#{notasks}"></p>
+        </span>
+
+    </div>
+</main>

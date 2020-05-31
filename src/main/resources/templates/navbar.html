@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-md navbar-light bg-warning fixed-top" xmlns:th="http://www.w3.org/1999/xhtml">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/tasks}" th:text="#{overview}"></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/tasks/new}" th:text="#{new}"></a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+                <span class="nav-link" th:text="#{lang.change}"></span>
+                <select id="locales">
+                    <option value=""></option>
+                    <option value="en" th:text="#{lang.eng}" ></option>
+                    <option value="nl" th:text="#{lang.nl}"></option>
+                </select>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#locales").change(function () {
+            var selectedOption = $('#locales').val();
+            if (selectedOption != ''){
+                window.location.replace('?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
